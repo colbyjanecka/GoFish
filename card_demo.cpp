@@ -8,12 +8,8 @@
 
 using namespace std;
 
-
 // PROTOTYPES for functions used by this demonstration program:
 void dealHand(Deck &d, Player &p, int numCards);
-
-
-
 
 int main( )
 {
@@ -34,14 +30,8 @@ int main( )
     return EXIT_SUCCESS;  
 }
 
-
-
 void dealHand(Deck &d, Player &p, int numCards)
 {
    for (int i=0; i < numCards; i++)
       p.addCard(d.dealCard());
 }
-   
-
-
-

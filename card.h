@@ -1,6 +1,6 @@
-//File Name: card.h
+// File Name: card.h
 //
-//Written by Owen Astrachan and Roger Priebe
+// Written by Owen Astrachan and Roger Priebe
 // This class represents a playing card, i.e., "ace of spades"
 // a Card is constructed from a rank (int in range 1..13)
 // and a suit (Card::spades, Card::hearts, Card::diamonds,
@@ -29,38 +29,34 @@ using namespace std;
 
 class Card
 {
-  public:
+public:
 
 
-    enum Suit {spades, hearts, diamonds, clubs};
-    
-    Card();          // default, ace of spades
+    enum Suit { spades, hearts, diamonds, clubs };
+
+    Card(); // default, ace of spades
 
     Card(int rank, Suit s);
 
-    string toString()              const;  // return string version e.g. Ac 4h Js
-    bool sameSuitAs(const Card& c) const;  // true if suit same as c
-    int  getRank()                 const;  // return rank, 1..13
-    string suitString(Suit s)      const;  // return "s", "h",...
-    
-    string rankString(int r)       const;  // return "A", "2", ..."Q"  
-    
-    
+    string toString()              const; // return string version e.g. Ac 4h Js
+    bool sameSuitAs(const Card& c) const; // true if suit same as c
+    int getRank()                 const;  // return rank, 1..13
+    string suitString(Suit s)      const; // return "s", "h",...
+
+    string rankString(int r)       const; // return "A", "2", ..."Q"
+
+
     bool operator == (const Card& rhs) const;
     bool operator != (const Card& rhs) const;
-    
 
-    
-  private:
+
+private:
 
     int myRank;
     Suit mySuit;
-
-    
 };
 
-ostream& operator << (ostream& out, const Card& c);
+ostream&operator << (ostream& out, const Card& c);
 
 
-
-#endif
+#endif // ifndef _CARD_H

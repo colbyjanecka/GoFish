@@ -1,5 +1,7 @@
 #include "player.h"
 #include <string>
+#include <ctime>
+#include <algorithm>
 using namespace std;
 
 Player::Player()
@@ -25,7 +27,10 @@ string Player::showHand() const
 
 Card Player::chooseCardFromHand() const
 {
-	Card c;
+	srand(time(NULL) + getpid());
+	int cardToChoose = rand() % getHandSize();
+	cout << cardToChoose << endl;
+	return (myHand[cardToChoose]);
 }
 
 int Player::getHandSize() const

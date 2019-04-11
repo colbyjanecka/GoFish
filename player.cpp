@@ -25,11 +25,22 @@ string Player::showHand() const
 	return (contents);
 }
 
+string Player::showBooks() const
+{
+	string contents;
+
+	vector<Card>::const_iterator iter;
+	for (iter = myBook.begin(); iter != myBook.end(); iter++) {
+		contents += iter->toString() + " ";
+	}
+	return (contents);
+}
+
 Card Player::chooseCardFromHand() const
 {
-	srand(time(NULL) + getpid());
+// srand(time(NULL) + getpid());
 	int cardToChoose = rand() % getHandSize();
-	cout << cardToChoose << endl;
+
 	return (myHand[cardToChoose]);
 }
 
@@ -42,4 +53,30 @@ int Player::getHandSize() const
 		count++;
 	}
 	return (count);
+}
+
+int Player::getBookSize() const
+{
+	return myBook.size() / 2;
+}
+
+void Player::bookCards(Card c1, Card c2)
+{
+	myBook.push_back(c1);
+	removeCardFromHand(c1);
+	myBook.push_back(c2);
+	removeCardFromHand(c2);
+}
+
+Card Player::removeCardFromHand(Card c)
+{
+	vector<Card>::iterator iter;
+	Card removedCard;
+	for (iter = myHand.begin(); iter != myHand.end(); iter++) {
+		if (*iter == c) {
+			removedCard = *iter;
+			myHand.erase(iter);
+			return removedCard;
+		}
+	}
 }

@@ -38,10 +38,20 @@ string Player::showBooks() const
 
 Card Player::chooseCardFromHand() const
 {
-// srand(time(NULL) + getpid());
 	int cardToChoose = rand() % getHandSize();
 
 	return (myHand[cardToChoose]);
+}
+
+bool Player::cardInHand(Card c) const
+{
+	vector<Card>::const_iterator iter;
+	for (iter = myHand.begin(); iter != myHand.end(); iter++) {
+		if (*iter == c) {
+			return (true);
+		}
+	}
+	return (false);
 }
 
 int Player::getHandSize() const

@@ -90,3 +90,27 @@ Card Player::removeCardFromHand(Card c)
 		}
 	}
 }
+
+bool Player::checkHandForBook(Card &c1, Card &c2)
+{
+	vector<Card>::const_iterator iter1;
+	vector<Card>::const_iterator iter2;
+	for (iter1 = myHand.begin(); iter1 != myHand.end(); iter1++) {
+		for (iter2 = myHand.begin(); iter2 != myHand.end(); iter2++) {
+			if ((iter1->getRank() == iter2->getRank()) && !(iter1->sameSuitAs(*iter2))) {
+				return (true);
+			}
+		}
+	}
+}
+
+bool Player::sameRankInHand(Card c) const
+{
+	vector<Card>::const_iterator iter;
+	for (iter = myHand.begin(); iter != myHand.end(); iter++) {
+		if (iter->getRank() == c.getRank()) {
+			return (true);
+		}
+	}
+	return (false);
+}

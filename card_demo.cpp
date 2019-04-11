@@ -19,28 +19,35 @@ int main( )
 {
     int numCards = 5;
     
-    Player p1("Joe");
-    Player p2("Jane");
+//    Player p1("Joe");
+//    Player p2("Jane");
     
-    Deck d;  //create a deck of cards
-    d.shuffle();
+//    Deck d;  //create a deck of cards
+//    d.shuffle();
     
-    dealHand(d, p1, numCards);
-    dealHand(d, p2, numCards);
+//    dealHand(d, p1, numCards);
+//    dealHand(d, p2, numCards);
        
-    cout << p1.getName() <<" has : " << p1.showHand() << endl;
-    cout << p2.getName() <<" has : " << p2.showHand() << endl;
-    
-    return EXIT_SUCCESS;  
+//    cout << p1.getName() <<" has : " << p1.showHand() << endl;
+//    cout << p2.getName() <<" has : " << p2.showHand() << endl;
+
+    Card c;
+    Card h (12,Card::hearts);
+    cout << c.toString() << "\n";
+    cout << h.toString() << "\n";
+    cout << c.sameSuitAs(h) << "\n";
+    cout << c.suitString(c.diamonds) << "\n";
+    cout << h.getRank() << "\n";
+    return EXIT_SUCCESS;
 }
 
 
 
-void dealHand(Deck &d, Player &p, int numCards)
-{
-   for (int i=0; i < numCards; i++)
-      p.addCard(d.dealCard());
-}
+//void dealHand(Deck &d, Player &p, int numCards)
+//{
+//   for (int i=0; i < numCards; i++)
+//      p.addCard(d.dealCard());
+//}
    
 
 

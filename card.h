@@ -29,34 +29,34 @@ using namespace std;
 
 class Card
 {
-  public:
+    public:
 
 
-    enum Suit {spades, hearts, diamonds, clubs};
-    
-    Card();          // default, ace of spades
+        enum Suit {spades, hearts, diamonds, clubs};
 
-    Card(int rank, Suit s);
+        Card();          // default, ace of spades
 
-    string toString()              const;  // return string version e.g. Ac 4h Js
-    bool sameSuitAs(const Card& c) const;  // true if suit same as c
-    int  getRank()                 const;  // return rank, 1..13
-    string suitString(Suit s)      const;  // return "s", "h",...
-    
-    string rankString(int r)       const;  // return "A", "2", ..."Q"  
-    
-    
-    bool operator == (const Card& rhs) const;
-    bool operator != (const Card& rhs) const;
-    
+        Card(int rank, Suit s);
 
-    
-  private:
+        string toString()              const;  // return string version e.g. Ac 4h Js
+        bool sameSuitAs(const Card& c) const;  // true if suit same as c
+        int  getRank()                 const;  // return rank, 1..13
+        string suitString(Suit s)      const;  // return "s", "h",...
 
-    int myRank;
-    Suit mySuit;
+        string rankString(int r)       const;  // return "A", "2", ..."Q"
 
-    
+
+        bool operator == (const Card& rhs) const;
+        bool operator != (const Card& rhs) const;
+
+
+
+    private:
+
+        int myRank;
+        Suit mySuit;
+
+
 };
 
 ostream& operator << (ostream& out, const Card& c);

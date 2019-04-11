@@ -19,72 +19,72 @@ using namespace std;
 class Player
 {
 public:
-    Player();
+	Player();
 
-    Player(string name)
-    {
-        myName = name;
-    }
+	Player(string name)
+	{
+		myName = name;
+	}
 
-    string getName() const
-    {
-        return myName;
-    }
+	string getName() const
+	{
+		return myName;
+	}
 
-    void addCard(Card c); // adds a card to the hand
-    void bookCards(Card c1, Card c2);
+	void addCard(Card c);				// adds a card to the hand
+	void bookCards(Card c1, Card c2);	// done
 
-    // OPTIONAL
-    // comment out if you decide to not use it
-    // this function will check a players hand for a pair.
-    // If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
+	// OPTIONAL
+	// comment out if you decide to not use it
+	// this function will check a players hand for a pair.
+	// If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
 
-    bool checkHandForBook(Card &c1, Card &c2);
+	bool checkHandForBook(Card &c1, Card &c2);
 
-    // OPTIONAL
-    // comment out if you decide to not use it
-    // Does the player have a card with the same rank as c in her hand?
-    bool rankInHand(Card c) const;
+									// OPTIONAL
+									// comment out if you decide to not use it
+									// Does the player have a card with the same rank as c in her hand?
+	bool rankInHand(Card c) const;
 
-    // uses some strategy to choose one card from the player's
-    // hand so they can say "Do you have a 4?"
-    Card chooseCardFromHand() const;
+									// uses some strategy to choose one card from the player's
+									// hand so they can say "Do you have a 4?"
+	Card chooseCardFromHand() const;// done
 
-    // Does the player have the card c in her hand?
-    bool cardInHand(Card c) const;
+									// Does the player have the card c in her hand?
+	bool cardInHand(Card c) const;	// done
 
-    // Remove the card c from the hand and return it to the caller
-    Card removeCardFromHand(Card c);
+									// Remove the card c from the hand and return it to the caller
+	Card removeCardFromHand(Card c);// done
 
-    string showHand() const;
-    string showBooks() const;
+	string showHand() const;		// done
+	string showBooks() const;		// done
 
-    int getHandSize() const;
-    int getBookSize() const;
+	int getHandSize() const;		// done
+	int getBookSize() const;		// DONE
 
-    // OPTIONAL
-    // comment out if you decide to not use it
-    // this function will check a players hand for a pair.
-    // If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
+	// OPTIONAL
+	// comment out if you decide to not use it
+	// this function will check a players hand for a pair.
+	// If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
 
-    bool checkHandForPair(Card &c1, Card &c2);
+	bool checkHandForPair(Card &c1, Card &c2);
 
 
-    // OPTIONAL
-    // comment out if you decide to not use it
-    // Does the player have a card with the same rank as c in her hand?
-    // e.g. will return true if the player has a 7d and the parameter is 7c
+	// OPTIONAL
+	// comment out if you decide to not use it
+	// Does the player have a card with the same rank as c in her hand?
+	// e.g. will return true if the player has a 7d and the parameter is 7c
 
-    bool sameRankInHand(Card c) const;
+	bool sameRankInHand(Card c) const;
 
 
 private:
 
-    vector<Card> myHand;
-    vector<Card> myBook;
+	vector<Card> myHand;
+	vector<Card> myBook;
 
-    string myName;
+	string myName;
 };
 
 
-#endif // ifndef _PLAYER_H
+#endif	// ifndef _PLAYER_H

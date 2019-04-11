@@ -17,6 +17,14 @@ int main()
 
     Player player1("John");
     Player player2("Lucy");
+
+    Deck d;
+
+    dealHand(d, player1, numCards);
+    dealHand(d, player2, numCards);
+
+    cout << player1.getName() << " has : " << player1.showHand() << endl;
+    cout << player2.getName() << " has : " << player2.showHand() << endl;
 }
 
 void dealHand(Deck &d, Player &p, int numCards)

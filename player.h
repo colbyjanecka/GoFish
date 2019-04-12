@@ -64,6 +64,8 @@ public:
 
 	bool sameRankInHand(Card c) const;	// done
 
+	Card findSimilarCard(Card c);
+
 
 private:
 

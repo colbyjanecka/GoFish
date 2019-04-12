@@ -30,6 +30,9 @@ int main()
 {
 	srand(time(NULL) + getpid());
 
+	ofstream myfile;
+    myfile.open("gofish_results.txt");
+
 	int numCards = 7;									// sets number of cards per hand
 
 	Player player1("John");								// create players
@@ -46,43 +49,70 @@ int main()
 
 	int currentPlayerID = P1;							// set the person who goes first.
 
-	printPlayerCards(player1, player2);
+    cout << player1.getName() << "'s cards: " << player1.showHand() << endl;
+    cout << player2.getName() << "'s cards: " << player2.showHand() << endl;
+    cout << player1.getName() << "'s books: " << player1.showBooks() << endl;
+    cout << player2.getName() << "'s books: " << player2.showBooks() << endl;
+    cout << endl;
+    myfile << player1.getName() << "'s cards: " << player1.showHand() << endl;
+    myfile << player2.getName() << "'s cards: " << player2.showHand() << endl;
+    myfile << player1.getName() << "'s books: " << player1.showBooks() << endl;
+    myfile << player2.getName() << "'s books: " << player2.showBooks() << endl;
+    myfile << endl;
+
 
 	while (player1.checkHandForBook(c1, c2) == true) {	// checks for pairs in p1's hand
 		player1.bookCards(c1, c2);						// and books them if so
 		cout << actionMessage(player1, BOOKS, c1) << endl << endl;
+		myfile << actionMessage(player1, BOOKS, c1) << endl << endl;
 	}
 	while (player2.checkHandForBook(c1, c2) == true) {	// checks for pairs in p2's hand
 		player2.bookCards(c1, c2);						// and books them if so
 		cout << actionMessage(player2, BOOKS, c1) << endl << endl;
+		myfile  << actionMessage(player2, BOOKS, c1) << endl << endl;
 	}
 
 	while (player1.getBookSize() + player2.getBookSize() != 26) {
 		Player * currentPlayer = turnToMove(currentPlayerID, &player1, &player2);
 		Player * otherPlayer   = turnToMove((currentPlayerID + 1) % 2, &player1, &player2);
 
-		printPlayerCards(player1, player2);
+        cout << player1.getName() << "'s cards: " << player1.showHand() << endl;
+        cout << player2.getName() << "'s cards: " << player2.showHand() << endl;
+        cout << player1.getName() << "'s books: " << player1.showBooks() << endl;
+        cout << player2.getName() << "'s books: " << player2.showBooks() << endl;
+        cout << endl;
+        myfile << player1.getName() << "'s cards: " << player1.showHand() << endl;
+        myfile << player2.getName() << "'s cards: " << player2.showHand() << endl;
+        myfile << player1.getName() << "'s books: " << player1.showBooks() << endl;
+        myfile << player2.getName() << "'s books: " << player2.showBooks() << endl;
+        myfile << endl;
 
 		cardInHand = currentPlayer->chooseCardFromHand();
 
 
 		cout << actionMessage(*currentPlayer, ASKS, cardInHand) << endl;
+		myfile << actionMessage(*currentPlayer, ASKS, cardInHand) << endl;
 		if (otherPlayer->sameRankInHand(cardInHand)) {
 			cout << actionMessage(*otherPlayer, HAS, cardInHand) << endl;
+			myfile << actionMessage(*otherPlayer, HAS, cardInHand) << endl;
 
 			Card pairCard = otherPlayer->findSimilarCard(cardInHand);
 			currentPlayer->addCard(otherPlayer->removeCardFromHand(pairCard));
 
 			currentPlayer->bookCards(cardInHand, pairCard);
 			cout << actionMessage(*currentPlayer, BOOKS, cardInHand) << endl << endl;
+			myfile << actionMessage(*currentPlayer, BOOKS, cardInHand) << endl << endl;
 		} else {
 			cout << actionMessage(*otherPlayer, GOFISH, cardInHand) << endl;
+			myfile << actionMessage(*otherPlayer, GOFISH, cardInHand) << endl;
 			Card drawnCard = d.dealCard();
 			currentPlayer->addCard(drawnCard);
-			cout << actionMessage(*currentPlayer, TAKES, drawnCard) << endl;
+			cout << actionMessage(*currentPlayer, TAKES, drawnCard) << endl << endl;
+			myfile << actionMessage(*currentPlayer, TAKES, drawnCard) << endl << endl;
 			if (currentPlayer->checkHandForBook(c1, c2)) {
 				currentPlayer->bookCards(c1, c2);
 				cout << actionMessage(*currentPlayer, BOOKS, c1) << endl << endl;
+				myfile << actionMessage(*currentPlayer, BOOKS, c1) << endl << endl;
 			}
 			currentPlayerID = (currentPlayerID + 1) % 2;
 		}
@@ -94,25 +124,24 @@ int main()
 		}
 	}
 	cout << " ALL CARDS PLAYED " << endl;
+	myfile <<  " ALL CARDS PLAYED " << endl;
 	cout << "John has " << player1.getBookSize() << " books." << endl;
+	myfile  << "John has " << player1.getBookSize() << " books." << endl;
 	cout << "Lucy has " << player2.getBookSize() << " books." << endl;
+	myfile << "Lucy has " << player2.getBookSize() << " books." << endl;
 	if (player1.getBookSize() > player2.getBookSize()) {
 		cout << player1.getName() << " wins!" << endl;
+		myfile  << player1.getName() << " wins!" << endl;
 	} else if (player1.getBookSize() < player2.getBookSize()) {
 		cout << player2.getName() << " wins!" << endl;
+		myfile << player2.getName() << " wins!" << endl;
 	} else {
 		cout << "It's a tie!" << endl;
+		myfile << "It's a tie!" << endl;
 	}
+	myfile.close();
 }														// main
 
-void printPlayerCards(Player player1, Player player2)	// prints out the current hands/books of the players.
-{
-	cout << player1.getName() << "'s cards: " << player1.showHand() << endl;
-	cout << player2.getName() << "'s cards: " << player2.showHand() << endl;
-	cout << player1.getName() << "'s books: " << player1.showBooks() << endl;
-	cout << player2.getName() << "'s books: " << player2.showBooks() << endl;
-	cout << endl;
-}
 
 string actionMessage(Player const p, int move, Card c)
 {

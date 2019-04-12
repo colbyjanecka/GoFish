@@ -117,3 +117,13 @@ bool Player::sameRankInHand(Card c) const
 	}
 	return (false);
 }
+
+Card Player::findSimilarCard(Card c)
+{
+	vector<Card>::const_iterator iter;
+	for (iter = myHand.begin(); iter != myHand.end(); iter++) {
+		if (iter->getRank() == c.getRank()) {
+			return (*iter);
+		}
+	}
+}

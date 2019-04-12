@@ -98,10 +98,13 @@ bool Player::checkHandForBook(Card &c1, Card &c2)
 	for (iter1 = myHand.begin(); iter1 != myHand.end(); iter1++) {
 		for (iter2 = myHand.begin(); iter2 != myHand.end(); iter2++) {
 			if ((iter1->getRank() == iter2->getRank()) && !(iter1->sameSuitAs(*iter2))) {
+				c1 = *iter1;
+				c2 = *iter2;
 				return (true);
 			}
 		}
 	}
+	return (false);
 }
 
 bool Player::sameRankInHand(Card c) const
